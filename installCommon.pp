@@ -1,11 +1,11 @@
-$people = [ 'tom', 'brady', 'janet' ]
-$groups = [ 'webadmins','sudo' ]
+$people = ['brady', 'janet', 'tom' ]
+$groups = [ 'admin','sudo' ]
 
 # must be run with the future parser: puppet apply --parser future --noop common.pp
 each($people) |$user| {
         user { "$user":
                 ensure => present,
-                password => '$1$WDW0AeF1$kAQNNYlIKZ6RbqpEiPAct0',
+                password => '',
                 shell => '/bin/bash',
                 home => "/home/$user",
                 require => File["/home/$user"],
@@ -16,7 +16,7 @@ each($people) |$user| {
         }
 }
 
-group { 'webadmins' :
+group { 'admin' :
         ensure => present,
         gid => 501,
 }
